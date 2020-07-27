@@ -1,0 +1,11 @@
+<h1> Create a new Reminder </h1>
+
+<%= form_for @reminder do |f| %>
+<%= f.label :startdate %>
+<%= f.date_field :startdate %>
+
+
+<%= f.collection_select :frequency, @frequencies, :to_s, :to_s %>
+
+<%= f.submit %>
+<% end %>
