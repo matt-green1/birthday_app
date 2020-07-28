@@ -32,6 +32,7 @@ class RemindersController < ApplicationController
 
     def destroy
         @reminder.destroy
+        redirect_back(fallback_location: user_path)
     end
 
     private

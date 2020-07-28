@@ -7,8 +7,6 @@ class CreateBirthdays < ActiveRecord::Migration[6.0]
       t.string :email
       t.string :image_url
       t.integer :user_id
-      t.integer :reminder_id
-
       t.timestamps
     end
   end

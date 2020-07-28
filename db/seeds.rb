@@ -14,18 +14,18 @@ Birthday.destroy_all
 
 devUser = User.create(username: "test", email: "test@gmail.com", password: "develop9999")
 
+birthday1 = Birthday.create(giftee_name: "Kermit", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser )
+birthday2 = Birthday.create(giftee_name: "Hermit", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser)
+birthday3 = Birthday.create(giftee_name: "Jeff", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser)
+birthday4 = Birthday.create(giftee_name: "Greg", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser)
+birthday5 = Birthday.create(giftee_name: "Ham", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser)
 
-reminder1 = Reminder.create(title: "Default Weekly", startdate: 1.day.from_now, frequency: "Weekly")
-reminder2 = Reminder.create(title: "Default Monthly", startdate: 1.day.from_now, frequency: "Monthly")
-reminder3 = Reminder.create(title: "Default Bi-weekly", startdate: 1.day.from_now, frequency: "Bi-weekly")
-reminder4 = Reminder.create(title: "Default 2 Days before", startdate: 1.day.from_now, frequency: "2 days before")
+Reminder.create(birthday: birthday1, startdate: 1.day.from_now, frequency: "Weekly")
+Reminder.create(birthday: birthday2, startdate: 1.day.from_now, frequency: "Monthly")
+Reminder.create(birthday: birthday3, startdate: 1.day.from_now, frequency: "Bi-weekly")
+Reminder.create(birthday: birthday4, startdate: 1.day.from_now, frequency: "Weekly")
+Reminder.create(birthday: birthday5, startdate: 1.day.from_now, frequency: "Weekly")
 
-
-birthday1 = Birthday.create(giftee_name: "Kermit", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser, reminder: nil )
-birthday2 = Birthday.create(giftee_name: "Hermit", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser, reminder: nil )
-birthday3 = Birthday.create(giftee_name: "Jeff", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser, reminder: reminder3)
-birthday4 = Birthday.create(giftee_name: "Greg", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser, reminder: reminder4)
-birthday5 = Birthday.create(giftee_name: "Ham", dob: Date.today, message: "Love you kermit!", email: "k.frog@gmail.com", image_url: "https://vignette.wikia.nocookie.net/muppet/images/7/79/Kermit-the-frog.jpg/revision/latest/scale-to-width-down/340?cb=20101015153557", user: devUser, reminder: reminder5)
 
  Gift.create(giftidea: "tie", price: 20)
  Gift.create(giftidea: "keyboard", price: 30)

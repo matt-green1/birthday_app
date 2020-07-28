@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_020620) do
+ActiveRecord::Schema.define(version: 2020_07_27_192613) do
 
   create_table "birthdays", force: :cascade do |t|
     t.string "giftee_name"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2020_07_28_020620) do
     t.string "email"
     t.string "image_url"
     t.integer "user_id"
-    t.integer "reminder_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -41,9 +40,9 @@ ActiveRecord::Schema.define(version: 2020_07_28_020620) do
   create_table "reminders", force: :cascade do |t|
     t.datetime "startdate"
     t.string "frequency"
+    t.integer "birthday_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "title"
   end
 
   create_table "users", force: :cascade do |t|

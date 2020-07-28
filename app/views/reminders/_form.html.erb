@@ -1,8 +1,13 @@
+
+</div>
+
+</div>
+
 <div class="row">
   <div class="col-md-6 offset-3">
     <%= form_with(model: @reminder, local: true) do |f| %>
       <%= f.label :title %>
-      <%= f.string_field :title, class: 'mb-1 form-control' %>          
+      <%= f.text_field :title, class: 'mb-1 form-control' %>          
       <%= f.label :startdate %>
       <%= f.date_field :startdate, class: 'mb-1 form-control' %>
       <%= f.collection_select :frequency, @frequencies, :to_s, :to_s, class: 'mb-1 form-control' %>
@@ -10,3 +15,4 @@
     <% end %>
   </div>
 </div>
+

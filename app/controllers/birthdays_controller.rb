@@ -2,6 +2,7 @@ class BirthdaysController < ApplicationController
     before_action :find_birthday, only: [:show, :edit, :update, :destroy]
 
     def show
+       @reminder = @birthday.reminder_id 
     end
 
     def index
