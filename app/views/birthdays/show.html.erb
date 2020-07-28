@@ -1,4 +1,19 @@
 
-<%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary" %>
-<%= button_to "Edit Reminder", edit_reminder_path(@birthday), method: :get, class: "mt-2 btn btn-primary" %>
-<%= button_to "Delete Reminder", reminder_path(@reminder), method: :delete, class: "mt-2 btn btn-primary" %>
+
+<h2><%= @birthday.giftee_name %></h2>
+<h2><%= @birthday.dob %></h2>
+
+<img src="<%= @birthday.image_url %> " width="250" height="300">
+
+<h2><%= @birthday.email %></h2>
+
+<h2><%= @birthday.message %></h2>
+
+
+<h3>Current Reminder:</h3>
+<%if @birthday.reminder.nil? %>
+    <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary" %>
+<%else%>
+    <%=@birthday.reminder.frequency%><br>
+    add method to delete reminder
+<%end%>

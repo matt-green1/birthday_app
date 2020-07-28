@@ -2,7 +2,7 @@ class BirthdaysController < ApplicationController
     before_action :find_birthday, only: [:show, :edit, :update, :destroy]
 
     def show
-       @reminder = @birthday.reminder_id 
+     #  @reminder = @birthday.reminder_id 
     end
 
     def index
@@ -11,13 +11,12 @@ class BirthdaysController < ApplicationController
 
     def new
         @birthday = Birthday.new
-        @birthday.user_id = current_user.id if current_user
     end
 
     def create
-        @birthday = Birthday.create(birthday_params)
+        @birthday = Birthday.new(birthday_params)
         @birthday.user_id = current_user.id if current_user
-        if @birthday.valid?
+        if @birthday.save
             redirect_to birthday_path(@birthday)
         else
             flash[:my_errors] = @birthday.errors.full_messages
@@ -30,6 +29,10 @@ class BirthdaysController < ApplicationController
     end
 
     def update
+        if birthday_params.reminder_id.empty? 
+            birthday_params.reminder_id = nil
+        end
+
         if @birthday.update(birthday_params)
             redirect_to birthday_path(@birthday)
         else
@@ -44,7 +47,7 @@ class BirthdaysController < ApplicationController
 
     private
     def birthday_params
-        params.require(:birthday).permit(:gifteename, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id)
+        params.require(:birthday).permit(:giftee_name, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id)
     end
 
     def find_birthday

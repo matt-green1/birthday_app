@@ -1,5 +1,6 @@
 <h1><%= @user.username%>'s Profile</h1>
 
+  
     <div id= "box">
       <%= button_to "Edit Profile", edit_user_path, method: :get, class: "mt-2 btn btn-primary" %>
     </div>
@@ -7,27 +8,21 @@
       <%= button_to "Add Birthday/Giftee", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
     </div>
     <div id= "box">
-      NOTE REMINDERS SHOULD BE CREATED FROM THE BIRTHDAY SHOW PAGE
+      <%= button_to "Add Gifts", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
     </div>
-    <div id= "box">
-       <%= button_to "Delete Employee", @user, method: :delete, class: "mt-2 btn btn-primary" %>
+        <% #Add method to current gift %>
+      <%= button_to "Gift list", gifts_path, method: :get, class: "mt-2 btn btn-primary" %>
+     <div id= "box">
+       <%= button_to "Delete Account", @user, method: :delete, class: "mt-2 btn btn-primary" %>
     </div>
-
-
 
 <div id="box">
-    <table style="width:100%">
-        <tr>
-            <th>Profile</th>
-            <th>Giftee</th>
-            <th>Message</th>
-        </tr>
     <% @user.birthdays.each do |birthday|%>
-       <tr> 
-        <td> <img src="<%=birthday.image_url%>" width="250" height="300"></td>
-        <td><%= link_to birthday.giftee_name, birthday_path(birthday) %></td>
-        <td><%= birthday.message %></td>
-       </tr>
+       <h3> Profile </h3>
+         <img src="<%=birthday.image_url%>" width="250" height="300"><br>
+        <p> Giftee </p> 
+        <%= link_to birthday.giftee_name, birthday_path(birthday) %><br>
+        <p> Message </p> 
+        <%= birthday.message %><br>
     <%end%>
-    </table>
 </div>

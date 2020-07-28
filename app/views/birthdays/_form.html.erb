@@ -6,15 +6,8 @@
       <%= f.label :dob %>
       <%= f.date_field :dob, class: 'mb-1 form-control' %>   
       <%= f.label :message %>
-      <%= f.text_field :message, class: 'mb-1 form-control' %>     
-      <%= f.label :Username %>   
-      <%= f.collection_select :user_id, User.all, :id, :username, class: 'mb-1 form-control' %> <br>
-      <%= f.label :Reminder %>   
-      <%= f.collection_select :reminder_id, Reminder.all, :id, :frequency, class: 'mb-1 form-control' %><br>
+      <%= f.text_field :message, class: 'mb-1 form-control' %>    
       <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
     <% end %>
   </div>
 </div>
-
-SHOULD NOT BE CREATING REMINDERS HERE. HAVE USERS CREATE BIRTHDAYS FIRST THEN REDIRECT THEM TO REMINDER NEW 
-ALSO USER_ID SHOULD BE CURRENT USER_ID USING SESSION/ HELPER METHOD. 
