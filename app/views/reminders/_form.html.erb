@@ -1,11 +1,10 @@
-<h1> Create a new Reminder </h1>
-
-<%= form_for @reminder do |f| %>
-<%= f.label :startdate %>
-<%= f.date_field :startdate %>
-
-
-<%= f.collection_select :frequency, @frequencies, :to_s, :to_s %>
-
-<%= f.submit %>
-<% end %>
+<div class="row">
+  <div class="col-md-6 offset-3">
+    <%= form_with(model: @reminder, local: true) do |f| %>
+      <%= f.label :startdate %>
+      <%= f.date_field :startdate, class: 'mb-1 form-control' %>
+      <%= f.collection_select :frequency, @frequencies, :to_s, :to_s, class: 'mb-1 form-control' %>
+      <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

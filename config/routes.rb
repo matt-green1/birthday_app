@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   resources :gifts, except: [:index, :show]
   resources :gift_birthdays, except: [:index, :show]
   resources :reminders, except: [:index, :show, :destroy]
-  resources :birthdays
+  resources :birthdays do 
+    collection do 
+      patch :sort
+    end 
+  end
   resources :users
 
   #add session later

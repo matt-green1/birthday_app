@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
         if @user.valid?
             log_in @user
-            flash[:success] = "Welcome to the PhotoView!"
+            flash[:success] = "Welcome to the Birthday Reminder!"
             redirect_to user_path(@user)
         else
             redirect_to new_user_path

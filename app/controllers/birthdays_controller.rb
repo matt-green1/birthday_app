@@ -10,10 +10,12 @@ class BirthdaysController < ApplicationController
 
     def new
         @birthday = Birthday.new
+        @birthday.user_id = current_user.id if current_user
     end
 
     def create
         @birthday = Birthday.create(birthday_params)
+        @birthday.user_id = current_user.id if current_user
         if @birthday.valid?
             redirect_to birthday_path(@birthday)
         else
@@ -41,7 +43,7 @@ class BirthdaysController < ApplicationController
 
     private
     def birthday_params
-        params.require(:birthday).permit(:gifteename, :dob, :email, :message, :image_url, :user_id, :reminder_id)
+        params.require(:birthday).permit(:gifteename, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id)
     end
 
     def find_birthday

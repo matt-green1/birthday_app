@@ -2,6 +2,8 @@ class GiftBirthdaysController < ApplicationController
     
     def new
         @gift_birthday = GiftBirthday.new
+        @gifts = Gift.all
+        @birthdays = Birthday.all
     end
 
     def create 
@@ -16,6 +18,8 @@ class GiftBirthdaysController < ApplicationController
 
     def edit
         @gift_birthday = GiftBirthday.find(params[:id])
+        @gifts = Gift.all
+        @birthdays = Birthday.all
     end
 
     def update

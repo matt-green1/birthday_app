@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_27_192613) do
+ActiveRecord::Schema.define(version: 2020_07_28_001130) do
 
   create_table "birthdays", force: :cascade do |t|
     t.string "giftee_name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_192613) do
     t.integer "reminder_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "position"
   end
 
   create_table "gift_birthdays", force: :cascade do |t|
