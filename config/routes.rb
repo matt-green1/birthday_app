@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   resources :gifts, except: [:index, :show]
-  resources :gift_birthdays, except: [:index, :show]
   resources :reminders
   resources :birthdays
   resources :users
+
 
   #add session later
   get '/sessions/new', to: 'sessions#new', as: 'new_session'

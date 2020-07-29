@@ -1,19 +1,23 @@
-<% if flash[:list_errors] %>
-  <% flash[:list_errors].each do |error| %>
-  <p><%= error %></p>
-<% end %>
-<% end %>
-
-
 <div class="row">
   <div class="col-md-6 offset-3">
+      
+      <% if flash[:list_errors] %>
+        <div id="error_explanation">
+           <div class="alert alert-danger">  
+         <% flash[:list_errors].each do |error| %>
+          <p><%= error %></p>
+        <% end %>
+         </div>
+      </div>
+      <% end %>
+
     <%= form_with(model: @birthday, local: true) do |f| %>
       <%= f.label :giftee_name %>
       <%= f.text_field :giftee_name, class: 'mb-1 form-control' %>   
       <%= f.label :dob %>
       <%= f.date_field :dob, class: 'mb-1 form-control' %>   
       <%= f.label :message %>
-      <%= f.text_field :message, class: 'mb-1 form-control' %>    
+      <%= f.text_field :message, class: 'mb-1 form-control' %> 
       <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
     <% end %>
   </div>

@@ -1,24 +1,26 @@
 class BirthdaysController < ApplicationController
     before_action :find_birthday, only: [:show, :edit, :update, :destroy]
+ #   $bdaygif_array = ["bday1.gif", "bday2.gif", "bday3.gif", "bday4.gif", "bday5.gif", "bday6.gif", "bday7.gif"]
+    $test_img = ["bdaypic1.jpg"]
 
     def show
         respond_to do |format|
-            format.html
-            format.ics do
-              cal = Icalendar::Calendar.new
-              cal.x_wr_calname = 'BIRTHDAY REMINDER APP!!'
-              cal.event do |e|
-                e.dtstart     = DateTime.now + 2.hours
-                e.dtend       = DateTime.now + 3.hours
-                e.summary     = 'Your weekly event update'
-                e.description = 'Dont forget this birthday!'
-              end
-              cal.publish
-              render plain: cal.to_ical
+          format.html
+          format.ics do
+            cal = Icalendar::Calendar.new           
+                event = Icalendar::Event.new
+                event.dtstart = @birthday.starts_at
+                event.dtend = @birthday.ends_at  
+                event.summary = @birthday.title
+                cal.add_event(event)            
+                cal.publish
+                render :text =>  cal.to_ical
+                byebug
           end
         end
     end
 
+    
     def index
         @birthdays = Birthday.all
     end
@@ -30,6 +32,8 @@ class BirthdaysController < ApplicationController
     def create
         @birthday = Birthday.new(birthday_params)
         @birthday.user_id = current_user.id if current_user
+    #    @birthday.image_url = $bdaygif_array.sample
+        @birthday.image_url = $test_img.sample
         if @birthday.save
             redirect_to birthday_path(@birthday)
         else
@@ -57,7 +61,9 @@ class BirthdaysController < ApplicationController
 
     def destroy
         @birthday.destroy
+        redirect_back(fallback_location: user_path(current_user))
     end
+
 
     private
     def birthday_params
@@ -67,4 +73,6 @@ class BirthdaysController < ApplicationController
     def find_birthday
         @birthday = Birthday.find(params[:id])
     end
+
+
 end

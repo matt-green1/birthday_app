@@ -9,7 +9,6 @@
 User.destroy_all
 Gift.destroy_all
 Reminder.destroy_all
-GiftBirthday.destroy_all
 Birthday.destroy_all
 
 devUser = User.create(username: "test", email: "test@gmail.com", password: "develop9999")
@@ -27,14 +26,13 @@ Reminder.create(birthday: birthday4, startdate: 1.day.from_now, frequency: "Week
 Reminder.create(birthday: birthday5, startdate: 1.day.from_now, frequency: "Weekly")
 
 
- Gift.create(giftidea: "tie", price: 20)
- Gift.create(giftidea: "keyboard", price: 30)
- Gift.create(giftidea: "earphones", price: 25)
- Gift.create(giftidea: "dozen red rose", price: 35)
- Gift.create(giftidea: "ipad", price: 1000)
-
-10.times do 
-    GiftBirthday.create(birthday_id: Birthday.all.sample.id, gift_id: Gift.all.sample.id)
-end
-
+ Gift.create(giftidea: "tie", price: 20, birthday: birthday1)
+ Gift.create(giftidea: "keyboard", price: 30, birthday: birthday2)
+ Gift.create(giftidea: "earphones", price: 25, birthday_id: Birthday.all.sample.id)
+ Gift.create(giftidea: "dozen red rose", price: 35, birthday_id: Birthday.all.sample.id)
+ Gift.create(giftidea: "ipad", price: 1000, birthday_id: Birthday.all.sample.id)
+ Gift.create(giftidea: "notebook", price: 20, birthday_id: Birthday.all.sample.id)
+ Gift.create(giftidea: "watch", price: 1000, birthday_id: Birthday.all.sample.id)
+ 
+ 
 puts "seed successful"

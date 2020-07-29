@@ -3,7 +3,7 @@
 <h2>Name: <%= @birthday.giftee_name %></h2>
 <h2>Birthday: <%= @birthday.dob.strftime("%d-%m-%Y") %></h2>
 
-<img src="<%= @birthday.image_url %> " width="250" height="300">
+<img src= "../../assets/images/bdaypic1.jpg" width="500" height="500">
 
 <h2><%= @birthday.email %></h2>
 
@@ -12,14 +12,18 @@
 
 <h3>Current Reminder:</h3>
 <%if @birthday.reminder.nil? %>
-    <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary" %>
+    <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary", :birthday_id => @birthday.id %>
 <%else%>
-   <%= link_to 'Click here to add to you calendar', birthday_url(protocol: :webcal, format: :ics) %>
-    <%=@birthday.reminder.frequency%><br>
-    add method to delete reminder
+   <h3><%=@birthday.reminder.frequency%></h3>
+   <%= link_to 'Add to you calendar', birthday_url(protocol: :webcal, format: :ics)%>
+ 
+   <%= button_to "Delete Reminder", reminder_path(@birthday.reminder), method: :delete, class: "mt-2 btn btn-primary" %>
 <%end%>
 
-<div id= "box">
-      <%= button_to "Add Gifts", new_gift_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
-</div>
 
+<h1>LIST OF GIFTS</h1>
+<% @birthday.gifts.each do |gift|%>
+    <%= gift.giftidea%>,
+    Price: $<%= gift.price%>
+    <%= button_to "Delete Gift", gift_path(gift), method: :delete, class: "mt-2 btn btn-primary" %>
+<%end%>

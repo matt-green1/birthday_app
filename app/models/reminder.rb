@@ -6,7 +6,7 @@ class Reminder < ApplicationRecord
     #issue if user decides they want to start today. 
     validate :startdate_not_in_past
     def startdate_not_in_past
-        if self.startdate <= Date.today
+        if self.startdate < Date.today
             self.errors.add(:startdate, "Startdate cannot be in the past")
         end
     end

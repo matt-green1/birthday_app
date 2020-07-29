@@ -1,6 +1,5 @@
 class Gift < ApplicationRecord
-    has_many :gift_birthdays, dependent: :destroy
-    has_many :birthdays, through: :gift_birthdays
+    belongs_to :birthday
 
     validates :giftidea, :price, presence: true
     validates :price, numericality: {greater_than: 0}
@@ -8,7 +7,7 @@ class Gift < ApplicationRecord
     validate :consider_charity
 
     def consider_charity
-        if self.price > 10000
+        if self.price.to_i > 1000000
             self.errors.add(:price, "You're very generous! Please consider donating to charity instead. :)")
         end
     end

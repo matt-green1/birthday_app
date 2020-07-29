@@ -2,15 +2,15 @@ class GiftsController < ApplicationController
     
     def new
         @gift = Gift.new
+        @birthdays = current_user.birthdays
     end
 
     def create 
-        @gift = Gift.create(gift_params)
-        if @gift.valid?
-            #check if redirect works
-            redirect_to user_path(@gift.birthday_id)
+        @gift = Gift.new(gift_params)
+        if @gift.save
+            redirect_to birthday_path(@gift.birthday_id)
         else
-            flash[:list_errors] = @birthday.errors.full_messages
+            flash[:list_errors] = @gift.errors.full_messages
             redirect_to new_gift_path
         end
     end
@@ -23,7 +23,7 @@ class GiftsController < ApplicationController
         @gift = Gift.find(params[:id])
         if @gift.update(gift_params)
             #check redirect works 
-            redirect_to user_path(@gift.birthday_id)
+            redirect_to birthday_path(@gift.birthday_id)
         else
             redirect_to edit_gift_path
         end
@@ -32,13 +32,13 @@ class GiftsController < ApplicationController
     def destroy 
         @gift = Gift.find(params[:id])
         @gift.destroy
-        render '/'
+        redirect_back(fallback_location: user_path(current_user))
     end
 
 private 
 
     def gift_params
-        params.require(:gift).permit(:giftidea, :price)
+        params.require(:gift).permit(:giftidea, :price, :birthday_id)
     end
 
 end

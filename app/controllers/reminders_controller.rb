@@ -3,6 +3,7 @@ class RemindersController < ApplicationController
 
     def new
         @reminder = Reminder.new
+        @birthdays = current_user.birthdays.map {|birthday| birthday if birthday.reminder.blank? }.compact  
         @frequencies = ["Bi-weekly", "Weekly", "Monthly"]
     end
 
@@ -18,7 +19,7 @@ class RemindersController < ApplicationController
 
     def destroy
         @reminder.destroy
-        redirect_back(fallback_location: user_path)
+        redirect_back(fallback_location: user_path(current_user))
     end
 
     private
@@ -26,7 +27,7 @@ class RemindersController < ApplicationController
         params.require(:reminder).permit(:startdate, :frequency, :birthday_id)
     end
 
-    def find_reminder
+    def reminder_find
         @reminder = Reminder.find(params[:id])
     end
 

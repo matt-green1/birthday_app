@@ -5,9 +5,11 @@
       <%= button_to "Edit Profile", edit_user_path, method: :get, class: "mt-2 btn btn-primary" %>
     </div>
     <div id= "box">
-      <%= button_to "Add Birthday/Giftee", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
+      <%= button_to "Add Birthday to Remember", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
     </div>
-      <%= button_to "Gift list", gifts_path, method: :get, class: "mt-2 btn btn-primary" %>
+    <div id= "box">
+      <%= button_to "Add Gift Idea", new_gift_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
+    </div>
      <div id= "box">
        <%= button_to "Delete Account", @user, method: :delete, class: "mt-2 btn btn-primary" %>
     </div>
@@ -20,5 +22,6 @@
         <%= link_to birthday.giftee_name, birthday_path(birthday) %><br>
         <p> Message </p> 
         <%= birthday.message %><br>
+        <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "mt-2 btn btn-primary" %>
     <%end%>
 </div>

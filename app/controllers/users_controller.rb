@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   skip_before_action :authorized, only: [:new, :create]
-
     def show
         @user = User.find(params[:id])
 
@@ -18,7 +17,6 @@ class UsersController < ApplicationController
 
     def create
         @user = User.create(user_params)
-
         if @user.valid?
             session[:user_id] = @user.id
             #log_in @user
@@ -40,6 +38,7 @@ class UsersController < ApplicationController
         if @user.update(user_params)    
             redirect_to user_path(@user)
         else
+            flash[:list_errors] = @user.errors.full_messages
             redirect_to edit_user_path
         end
     end
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
     private 
 
     def user_params
-        params.require(:user).permit(:username, :email, :password)
+        params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
 
 end
