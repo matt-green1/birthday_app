@@ -23,10 +23,23 @@ class Birthday < ApplicationRecord
     def make_date_pretty(date) 
         date.strftime("%d-%m-%Y")
     end
-#
-#
-#
-#
-#
+
+    def to_icalender
+        @event = Birthday.find(params[:id])
+        respond_to do |format|
+          format.html
+          format.ics do
+            cal = Icalendar::Calendar.new           
+                event = Icalendar::Event.new
+                event.dtstart = @event.starts_at
+                event.dtend = @event.ends_at  
+                event.summary = @event.title
+                event.uid = event.url = "#{event_url}"
+                cal.add_event(event)            
+                cal.publish
+                render :text =>  cal.to_ical
+          end
+        end
+    end
 
 end

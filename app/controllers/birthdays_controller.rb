@@ -2,7 +2,21 @@ class BirthdaysController < ApplicationController
     before_action :find_birthday, only: [:show, :edit, :update, :destroy]
 
     def show
-     #  @reminder = @birthday.reminder_id 
+        respond_to do |format|
+            format.html
+            format.ics do
+              cal = Icalendar::Calendar.new
+              cal.x_wr_calname = 'BIRTHDAY REMINDER APP!!'
+              cal.event do |e|
+                e.dtstart     = DateTime.now + 2.hours
+                e.dtend       = DateTime.now + 3.hours
+                e.summary     = 'Your weekly event update'
+                e.description = 'Dont forget this birthday!'
+              end
+              cal.publish
+              render plain: cal.to_ical
+          end
+        end
     end
 
     def index
