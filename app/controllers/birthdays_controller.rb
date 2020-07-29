@@ -19,7 +19,7 @@ class BirthdaysController < ApplicationController
         if @birthday.save
             redirect_to birthday_path(@birthday)
         else
-            flash[:my_errors] = @birthday.errors.full_messages
+            flash[:list_errors] = @birthday.errors.full_messages
             redirect_to new_birthday_path
         end
     end
@@ -36,7 +36,7 @@ class BirthdaysController < ApplicationController
         if @birthday.update(birthday_params)
             redirect_to birthday_path(@birthday)
         else
-            flash[:my_errors] = @birthday.errors.full_messages
+            flash[:list_errors] = @birthday.errors.full_messages
             redirect_to edit_birthday_path
         end
     end

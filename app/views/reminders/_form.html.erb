@@ -1,12 +1,8 @@
-</div>
-
-</div>
-
-<% if flash[:list_errors] %>
-<% flash[:list_errors].each do |error| %>
-<p><%= error %></p>
-<% end %>
-<% end %>
+  <% if flash[:list_errors] %>
+    <% flash[:list_errors].each do |error| %>
+      <p><%= error %></p>
+    <% end %>
+  <% end %>
 
 <div class="row">
   <div class="col-md-6 offset-3">

@@ -10,6 +10,7 @@ class GiftsController < ApplicationController
             #check if redirect works
             redirect_to user_path(@gift.birthday_id)
         else
+            flash[:list_errors] = @birthday.errors.full_messages
             redirect_to new_gift_path
         end
     end

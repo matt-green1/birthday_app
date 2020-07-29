@@ -1,7 +1,7 @@
 
 
-<h2><%= @birthday.giftee_name %></h2>
-<h2><%= @birthday.dob %></h2>
+<h2>Name: <%= @birthday.giftee_name %></h2>
+<h2>Birthday: <%= @birthday.dob.strftime("%d-%m-%Y") %></h2>
 
 <img src="<%= @birthday.image_url %> " width="250" height="300">
 
@@ -17,3 +17,7 @@
     <%=@birthday.reminder.frequency%><br>
     add method to delete reminder
 <%end%>
+
+<div id= "box">
+      <%= button_to "Add Gifts", new_gift_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
+</div>

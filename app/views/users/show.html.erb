@@ -7,10 +7,6 @@
     <div id= "box">
       <%= button_to "Add Birthday/Giftee", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
     </div>
-    <div id= "box">
-      <%= button_to "Add Gifts", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
-    </div>
-        <% #Add method to current gift %>
       <%= button_to "Gift list", gifts_path, method: :get, class: "mt-2 btn btn-primary" %>
      <div id= "box">
        <%= button_to "Delete Account", @user, method: :delete, class: "mt-2 btn btn-primary" %>

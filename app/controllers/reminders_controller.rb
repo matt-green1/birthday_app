@@ -11,23 +11,10 @@ class RemindersController < ApplicationController
         if @reminder.valid?
             redirect_to birthday_path(@reminder.birthday)
         else
-            flash[:list_errors] = "Invalid entry! Try again!"
+            flash[:list_errors] = @reminder.errors.full_messages
             redirect_to new_reminder_path
         end
     end
-
-   # def edit
-   #     @frequencies = ["Bi-weekly", "Weekly", "Monthly"]
-   # end
-
-   # def update
-   #     if @reminder.update(reminder_params)
-   #         redirect_to birthday_path(@reminder.birthday)
-   #     else
-   #         flash[:my_errors] = @reminder.errors.full_messages
-   #         redirect_to edit_reminder_path
-   #     end
-   # end
 
     def destroy
         @reminder.destroy
