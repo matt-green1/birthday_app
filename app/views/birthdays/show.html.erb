@@ -15,7 +15,7 @@
     <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary", :birthday_id => @birthday.id %>
 <%else%>
    <h3><%=@birthday.reminder.frequency%></h3>
-   <%= link_to 'Add to you calendar', birthday_url(protocol: :webcal, format: :ics)%>
+   <%= link_to 'Add to you calendar', birthday_path(protocol: :webcal, format: :ics)%>
  
    <%= button_to "Delete Reminder", reminder_path(@birthday.reminder), method: :delete, class: "mt-2 btn btn-primary" %>
 <%end%>

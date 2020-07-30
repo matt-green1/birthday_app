@@ -4,19 +4,32 @@ class BirthdaysController < ApplicationController
     $test_img = ["bdaypic1.jpg"]
 
     def show
+        birthdaytime = @birthday.dob.change(:year => Time.now.year)
         respond_to do |format|
           format.html
-          format.ics do
-            cal = Icalendar::Calendar.new           
-                event = Icalendar::Event.new
-                event.dtstart = @birthday.starts_at
-                event.dtend = @birthday.ends_at  
-                event.summary = @birthday.title
-                cal.add_event(event)            
+            format.ics do
+                cal = Icalendar::Calendar.new
+                cal.x_wr_calname = 'Awesome Birthday App'
+                cal.event do |e|
+                    e.dtstart     = birthdaytime
+                    e.dtend       = birthdaytime.change(hour: 10)
+                    e.summary     = @birthday.giftee_name.capitalize() + "'s Birthday!"
+                    e.description = @birthday.message
+
+                    e.alarm do |a|
+                        a.action  = "DISPLAY"
+                        a.summary = @birthday.reminder.frequency
+                        a.trigger = "-P1DT0H0M0S" # 1 day before
+                    end
+
+                    e.alarm do |a|
+                        a.action  = "AUDIO"
+                        a.trigger = "-PT15M" #audio alart 15mins
+                    end
+                end
                 cal.publish
-                render :text =>  cal.to_ical
-                byebug
-          end
+                render plain: cal.to_ical
+            end
         end
     end
 
