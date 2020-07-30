@@ -2,6 +2,7 @@ class Birthday < ApplicationRecord
     belongs_to :user
     has_one :reminder, dependent: :destroy
     has_many :gifts, dependent: :destroy
+    has_one_attached :image
 
     validates :giftee_name, :dob, presence: true
     validates :giftee_name, uniqueness: true

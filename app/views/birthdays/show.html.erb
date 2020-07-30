@@ -9,6 +9,7 @@
 
 <h2><%= @birthday.message %></h2>
 
+<%= image_tag(@birthday.image) %>
 
 <h3>Current Reminder:</h3>
 <%if @birthday.reminder.nil? %>

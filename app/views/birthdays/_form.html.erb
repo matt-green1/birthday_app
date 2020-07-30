@@ -17,7 +17,9 @@
       <%= f.label :dob %>
       <%= f.date_field :dob, class: 'mb-1 form-control' %>   
       <%= f.label :message %>
-      <%= f.text_field :message, class: 'mb-1 form-control' %> 
+      <%= f.text_field :message, class: 'mb-1 form-control' %>
+      <%= f.label :image %>
+      <%= f.file_field :image %>
       <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
     <% end %>
   </div>

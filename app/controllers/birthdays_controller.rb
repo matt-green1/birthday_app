@@ -80,7 +80,7 @@ class BirthdaysController < ApplicationController
 
     private
     def birthday_params
-        params.require(:birthday).permit(:giftee_name, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id)
+        params.require(:birthday).permit(:giftee_name, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id, :image)
     end
 
     def find_birthday
