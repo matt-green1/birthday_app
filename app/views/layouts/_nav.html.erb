@@ -1,0 +1,18 @@
+<nav class="navbar mb-2 navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to "Home", root_path, class: "btn btn-secondary" %>
+    </div>
+    <% if @current_user %>
+      <ul class="nav navbar-right ">
+          <li><%= link_to "Profile", @current_user, class: "btn btn-secondary", style: "margin:5px"%></li>
+        <li><%= link_to "Log out", logout_path, class: "btn btn-secondary", method: :delete, style: "margin:5px"%></li> 
+      </ul>
+    <% else %>
+      <ul class="nav navbar-right ">
+        <li><%= link_to "Log in", new_session_path, class: "btn btn-secondary", style: "margin:5px" %></li> 
+        <li><%= link_to "Sign up", new_user_path, class: "btn btn-secondary", style: "margin:5px" %></li>
+      </ul>
+    <% end %>
+  </div>
+</nav>

@@ -1,30 +1,45 @@
 
-
-<h2>Name: <%= @birthday.giftee_name %></h2>
-<h2>Birthday: <%= @birthday.dob.strftime("%d-%m-%Y") %></h2>
-
-<img src= "../../assets/images/bdaypic1.jpg" width="500" height="500">
-
-<h2><%= @birthday.email %></h2>
-
-<h2><%= @birthday.message %></h2>
-
-<%= image_tag(@birthday.image) %>
-
-<h3>Current Reminder:</h3>
-<%if @birthday.reminder.nil? %>
-    <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary", :birthday_id => @birthday.id %>
-<%else%>
-   <h3><%=@birthday.reminder.frequency%></h3>
-   <%= link_to 'Add to you calendar', birthday_path(protocol: :webcal, format: :ics)%>
- 
-   <%= button_to "Delete Reminder", reminder_path(@birthday.reminder), method: :delete, class: "mt-2 btn btn-primary" %>
-<%end%>
+<center>
+<div class="shadow-sm p-3 mb-5 bg-white rounded">
+    <h2 class="p-3 mb-2 bg-primary text-white">Name: <%= @birthday.giftee_name.capitalize() %></h2>
+    <h3 class="p-3 mb-2 bg-light text-dark">Birthday: <%= @birthday.dob.strftime("%B #{@birthday.dob.day.ordinalize}") %></h3>
+</div>
 
 
-<h1>LIST OF GIFTS</h1>
-<% @birthday.gifts.each do |gift|%>
-    <%= gift.giftidea%>,
-    Price: $<%= gift.price%>
-    <%= button_to "Delete Gift", gift_path(gift), method: :delete, class: "mt-2 btn btn-primary" %>
-<%end%>
+
+  <%= image_tag(@birthday.image, style:'width:300px', class: "border-20 border-primary rounded") %>
+
+
+
+
+<div class="w-50 p-3">
+<div class="p-3 mb-2 bg-light">       
+        <h3 class="text-light bg-dark">Reminder</h3>
+        <%if @birthday.reminder.nil? %>
+            <%= button_to "Add Reminder", new_reminder_path, method: :get, class: "mt-2 btn btn-primary", :birthday_id => @birthday.id %>
+        <%else%>
+        
+        <h3><%=@birthday.reminder.message%></h3>
+        <%= link_to 'Add to your calendar', birthday_path(protocol: :webcal, format: :ics)%>
+        <%= button_to "Delete Reminder", reminder_path(@birthday.reminder), method: :delete, class: "mt-2 btn btn-primary" %>
+        <%end%>
+    </div>
+</div>
+
+<div class="w-50 p-3">
+    <div class="p-3 mb-2 bg-light">    
+    <h3 class="text-light bg-dark">Gift Ideas</h3>
+    <div class="list-group">
+        <% @birthday.gifts.each do |gift|%>
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h3 class="mb-1"><%= gift.giftidea%></h3>
+                    <small><%= button_to "x", gift_path(gift), method: :delete, class: "mt-2 btn btn-primary" %></small>
+                </div>
+                <p class="mb-1">Price: $<%= gift.price%></p>
+            </a>   
+          <%end%>
+        </div>
+    </div>
+</div>
+</center>

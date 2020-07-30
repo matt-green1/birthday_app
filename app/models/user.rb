@@ -9,4 +9,5 @@ class User < ApplicationRecord
     validates :password,  length: { minimum: 5 }, confirmation: true
     validates_format_of :email, :with => Devise::email_regexp
     
+
 end

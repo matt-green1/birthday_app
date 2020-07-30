@@ -16,7 +16,14 @@ class SessionsController < ApplicationController
     end
 
     def logout
-        session.delete(:user_id)
+        log_out
         redirect_to '/'
     end
+
+    def current_user
+        if session[:user_id]
+            @current_user ||= User.find_by(id: session[:user_id])
+        end
+    end
+
 end

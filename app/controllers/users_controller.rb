@@ -3,12 +3,16 @@ class UsersController < ApplicationController
     def show
         @user = User.find(params[:id])
 
+        #@sorted_bdays = @user.birthdays.sort_by {|bday| bday.dob.day}
+        #yebug
         if @user == @current_user
             render :show
         else
             flash[:list_errors] = "Can Only See Your Own Profile!"
             redirect_to '/'
         end
+
+        
     end
 
     def new

@@ -1,10 +1,13 @@
 class BirthdaysController < ApplicationController
     before_action :find_birthday, only: [:show, :edit, :update, :destroy]
- #   $bdaygif_array = ["bday1.gif", "bday2.gif", "bday3.gif", "bday4.gif", "bday5.gif", "bday6.gif", "bday7.gif"]
-    $test_img = ["bdaypic1.jpg"]
 
     def show
+        #@time_remaining = birthdaytime - (Time.now)
+
         birthdaytime = @birthday.dob.change(:year => Time.now.year)
+        if birthdaytime < Time.now
+            birthdaytime = birthdaytime.next_year(years=1)
+        end
         respond_to do |format|
           format.html
             format.ics do
@@ -14,11 +17,11 @@ class BirthdaysController < ApplicationController
                     e.dtstart     = birthdaytime
                     e.dtend       = birthdaytime.change(hour: 10)
                     e.summary     = @birthday.giftee_name.capitalize() + "'s Birthday!"
-                    e.description = @birthday.message
+                    e.description = @birthday.reminder.message
 
                     e.alarm do |a|
                         a.action  = "DISPLAY"
-                        a.summary = @birthday.reminder.frequency
+                        a.summary = "Birthday coming up!"
                         a.trigger = "-P1DT0H0M0S" # 1 day before
                     end
 
@@ -43,10 +46,9 @@ class BirthdaysController < ApplicationController
     end
 
     def create
+        #byebug
         @birthday = Birthday.new(birthday_params)
         @birthday.user_id = current_user.id if current_user
-    #    @birthday.image_url = $bdaygif_array.sample
-        @birthday.image_url = $test_img.sample
         if @birthday.save
             redirect_to birthday_path(@birthday)
         else
@@ -55,7 +57,7 @@ class BirthdaysController < ApplicationController
         end
     end
 
-    #might need an extra variable here
+
     def edit
     end
 
@@ -79,8 +81,9 @@ class BirthdaysController < ApplicationController
 
 
     private
+    #note took out :reminder_id in case this breaks something
     def birthday_params
-        params.require(:birthday).permit(:giftee_name, :dob, :email, :message, :image_url, :user_id, :reminder_id, :user_id, :image)
+        params.require(:birthday).permit(:giftee_name, :dob, :user_id, :image)
     end
 
     def find_birthday

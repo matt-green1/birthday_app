@@ -3,8 +3,7 @@ class RemindersController < ApplicationController
 
     def new
         @reminder = Reminder.new
-        @birthdays = current_user.birthdays.map {|birthday| birthday if birthday.reminder.blank? }.compact  
-        @frequencies = ["Bi-weekly", "Weekly", "Monthly"]
+        @birthdays = current_user.birthdays.map {|birthday| birthday if birthday.reminder.blank? }.compact
     end
 
     def create
@@ -24,7 +23,7 @@ class RemindersController < ApplicationController
 
     private
     def reminder_params
-        params.require(:reminder).permit(:startdate, :frequency, :birthday_id)
+        params.require(:reminder).permit(:message, :birthday_id)
     end
 
     def reminder_find

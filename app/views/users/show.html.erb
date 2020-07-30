@@ -1,27 +1,35 @@
-<h1><%= @user.username%>'s Profile</h1>
+<br><br>
+<center>
+<h1><%= @user.username%>'s Profile</h1><br>
 
-  
-    <div id= "box">
-      <%= button_to "Edit Profile", edit_user_path, method: :get, class: "mt-2 btn btn-primary" %>
-    </div>
-    <div id= "box">
-      <%= button_to "Add Birthday to Remember", new_birthday_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
-    </div>
-    <div id= "box">
-      <%= button_to "Add Gift Idea", new_gift_path(@user), method: :get, class: "mt-2 btn btn-primary" %>
-    </div>
-     <div id= "box">
-       <%= button_to "Delete Account", @user, method: :delete, class: "mt-2 btn btn-primary" %>
-    </div>
 
-<div id="box">
-    <% @user.birthdays.each do |birthday|%>
-       <h3> Profile </h3>
-         <img src="<%=birthday.image_url%>" width="250" height="300"><br>
-        <p> Giftee </p> 
-        <%= link_to birthday.giftee_name, birthday_path(birthday) %><br>
-        <p> Message </p> 
-        <%= birthday.message %><br>
-        <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "mt-2 btn btn-primary" %>
-    <%end%>
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+      <%= button_to "Add Birthdays", new_birthday_path(@user), method: :get, class: "btn btn-outline-primary" %>
+      <%= button_to "Add Gift Idea", new_gift_path(@user), method: :get, class: "btn btn-outline-success" %>
+      <%= button_to "Edit Profile", edit_user_path, method: :get, class: "btn btn-outline-warning" %>
+      <%= button_to "Delete Account", @user, method: :delete, class: "btn btn-outline-danger" %>
 </div>
+
+<br><br>
+
+<div class="centered">
+<h3> Saved Birthdays: </h3><br>
+      <% @user.birthdays.each do |birthday|%>
+      <div class="card mb-3" style="max-width: 600px;">
+      <div class="row no-gutters">
+      <div class="col-md-5">
+          <%= link_to image_tag(birthday.image, style:'width:300px; height:200px'), birthday_path(birthday), class:"card-img"%>
+    </div>
+    <div class="col-md-7">
+        <div class="card-body">
+            <h5 class="card-title">Name: <%= birthday.giftee_name%></h5>
+            <br>
+            <%= button_to "View Birthday", birthday_path(birthday), method: :get, class: "mt-2 btn btn-primary" %>
+            <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "mt-2 btn btn-primary" %>
+        </div>
+    </div>
+</div>
+</div>
+ <br><br>
+    <%end%>
+</center>
