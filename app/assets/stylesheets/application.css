@@ -2,6 +2,11 @@
 @import "birthdays";
 @import "gifts";
 
+.img {
+  outline: 4px solid white;
+  outline-offset: -8px;
+}
+
 
 .sitetitle {
   position: absolute;

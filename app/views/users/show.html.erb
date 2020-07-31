@@ -17,7 +17,7 @@
 <h3 class="title3"> Saved Birthdays </h3><br>
       <% @user.birthdays.each do |birthday|%>
       <div class="card_color" style="max-width: 600px">
-            <%= link_to image_tag(birthday.image, style:'width:400px; height:350px'), birthday_path(birthday)%>
+            <%= link_to image_tag(birthday.image, style:'width:400px; height:350px', class:"img"), birthday_path(birthday)%>
             <h5 class="text-light title3">Name: <%= birthday.giftee_name%></h5>
             <h5 class="text-light title3">Birthday: <%= birthday.dob.strftime("%B #{birthday.dob.day.ordinalize}") %></h5>
             <br>
