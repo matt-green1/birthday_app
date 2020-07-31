@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :authorized
+    layout "application"
     
     def authorized
         redirect_to new_user_path unless current_user

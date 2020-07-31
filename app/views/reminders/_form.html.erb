@@ -1,8 +1,7 @@
 <center>
-<div class="row">
-  <div class="col-md-6 offset-3">
+<section class="get-in-touch">
+   <h1 class="title">Custom Reminder</h1>
 
-  <h1> Create a Custom Reminder </h1><br>
 
       <% if flash[:list_errors] %>
         <div id="error_explanation">
@@ -17,11 +16,12 @@
 
     <%= form_with(model: @reminder, local: true) do |f| %> 
       <%= f.label :message %>
-      <%= f.text_area :message, class: 'mb-1 form-control' %>  
-      <%= f.collection_select :birthday_id, @birthdays, :id, :giftee_name, class: 'mb-1 form-control' %>     
-      <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
+      <%= f.text_area :message, class: 'mb-1 form-control' %> <br>
+      <%= f.label :giftee_name %>      
+      <%= f.collection_select :birthday_id, @birthdays, :id, :giftee_name, class: 'mb-1 form-control' %><br/><br>   
+      <%= f.submit "Create", class: "submit-btn" %>
     <% end %>
-  </div>
+  </section>
 
-  </div>
+
   </center>

@@ -1,8 +1,7 @@
+<section class="get-in-touch">
+   <h1 class="title">Add Gift Ideas</h1>
 <div class="row">
   <div class="col-md-6 offset-3">
-  <br><br><br>
-  <center><h1>New Gift Idea</h1></center><br>  
-
       <% if flash[:list_errors] %>
         <div id="error_explanation">
            <div class="alert alert-danger">  
@@ -18,14 +17,13 @@
   <div class="row">
     <div class="col-md-6 offset-3">
       <%= form_with(model: @gift, local: true) do |f| %>
-        <%= f.label "Who is this for?" %><br>
-
+        <%= f.label "Who is this for?" %>
         <%= f.collection_select :birthday_id, @birthdays, :id, :giftee_name, class: 'mb-1 form-control' %>  <br><br>
         <%= f.label "Enter Gift Here" %>
         <%= f.text_field :giftidea, class: 'mb-1 form-control' %><br>
         <%= f.label :price %>
-        $<%= f.number_field :price, min: 1, placeholder: '$20', class: 'mb-1 form-control' %><br>
-        <%= f.submit "Create", class: "mt-2 btn btn-primary" %>
+        $<%= f.number_field :price, min: 1, placeholder: '$20', class: 'mb-1 form-control' %><br/>
+        <%= f.submit "Create", class:"submit-btn"%>
       <% end %>
     </div>
   </div>
@@ -35,3 +33,5 @@
   </div>
 
 </div>
+
+</section>
