@@ -15,16 +15,12 @@
 <div class="centered">
 <h3 class="title3"> Saved Birthdays </h3><br>
       <% @user.birthdays.each do |birthday|%>
-      <div class="card mb-3 bg-info rounded" style="max-width: 800px;">
-      <div class="p-2 flex-grow-1 bd-highlight">
-          <%= link_to image_tag(birthday.image, style:'width:400px; height:350px'), birthday_path(birthday), class:"card-img rounded-circle"%>
-    </div>
-    <div class="p-2 bd-highlight">
-            <h5 class="card-title">Name: <%= birthday.giftee_name%></h5>
+      <div class="card_color" style="max-width: 500px">
+            <%= link_to image_tag(birthday.image, style:'width:400px; height:350px'), birthday_path(birthday)%>
+            <h5 class="text-light title3">Name: <%= birthday.giftee_name%></h5>
             <br>
-           <div class="p-2 bd-highlight"> <%= button_to "View Birthday", birthday_path(birthday), method: :get, class: "mt-2 btn btn-primary" %></div>
-           <div class="p-2 bd-highlight"> <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "mt-2 btn btn-primary" %></div>
-    </div>
+           <%= button_to "View Birthday", birthday_path(birthday), method: :get, class: "long-btn" %><br>
+           <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "long-btn" %><br>
 </div>
  <br>
  <br>
@@ -32,4 +28,3 @@
 
 </section>
 </center>
-

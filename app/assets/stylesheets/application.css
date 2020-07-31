@@ -97,14 +97,14 @@
 .long-btn {
   display: inline-block;
   background-color: #000;
-   background-image: linear-gradient(125deg,#efb2f9,#6bb9f5);
+   background-image: linear-gradient(125deg,#b879f7,#6bb9f5);
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-size: 16px;
   padding: 8px 16px;
   border: none;
-  width:180px;
+  width:200px;
   cursor: pointer;
 }
 .x-btn {
@@ -116,8 +116,9 @@
   width:30px;
   height: 30px;
 }
-
-
+.card_color {
+  background-image: linear-gradient(125deg,#dbfec5,#7baefa);
+}
 .rainbow-text {
   text-align: center;
   letter-spacing: 3px;
@@ -327,17 +328,3 @@
   }
 }
 
-
-/* demo shizzle only */
-body {
-  background: #eee;
-  max-width: 900px;
-  margin: 30px auto;
-  padding: 20px;
-/*   outline: 1px solid #ccc; */
-}
-
-/* Still use global css (not utility css) for base typography etc? */
-p {
-  margin-bottom: 0.8em;
-}
