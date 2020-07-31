@@ -8,7 +8,7 @@ class Gift < ApplicationRecord
 
     def consider_charity
         if self.price.to_i > 1000000
-            self.errors.add(:price, "You're very generous! Please consider donating to charity instead. :)")
+            self.errors.add(:price, "too high. You're very generous! Please consider donating to charity instead. :)")
         end
     end
 

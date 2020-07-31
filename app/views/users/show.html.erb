@@ -1,5 +1,6 @@
-<br><br>
+<br>
 <center>
+<div class="bg-light" style="width: 900px"><br><br>
 <section class="get-in-touch">
 <h1 class="title2"><%= @user.username%>'s Profile</h1>
 
@@ -15,9 +16,10 @@
 <div class="centered">
 <h3 class="title3"> Saved Birthdays </h3><br>
       <% @user.birthdays.each do |birthday|%>
-      <div class="card_color" style="max-width: 500px">
+      <div class="card_color" style="max-width: 600px">
             <%= link_to image_tag(birthday.image, style:'width:400px; height:350px'), birthday_path(birthday)%>
             <h5 class="text-light title3">Name: <%= birthday.giftee_name%></h5>
+            <h5 class="text-light title3">Birthday: <%= birthday.dob.strftime("%B #{birthday.dob.day.ordinalize}") %></h5>
             <br>
            <%= button_to "View Birthday", birthday_path(birthday), method: :get, class: "long-btn" %><br>
            <%= button_to "Delete Birthday", birthday_path(birthday), method: :delete, class: "long-btn" %><br>
@@ -27,4 +29,5 @@
     <%end%>
 
 </section>
+</div>
 </center>

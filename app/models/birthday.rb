@@ -5,7 +5,6 @@ class Birthday < ApplicationRecord
     has_one_attached :image
 
     validates :giftee_name, :dob, presence: true
-    validates :giftee_name, uniqueness: true
     validates :image, presence: true
 
     #validate :real_dob
